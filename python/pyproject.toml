@@ -3,9 +3,8 @@ build-backend = "setuptools.build_meta"
 requires = ["setuptools>=45", "setuptools_scm[toml]>=6.2"]
 
 [project]
-name = "PySvelte"
-description = "A library for visualising and interpreting model activations within a Jupyter Notebook"
-version = "0.0.1"
+name = "CircuitsVis"
+description = "Mechanistic Interpretability Visualizations using React"
 dependencies = [
     "datasets",
     "einops",
@@ -22,3 +21,6 @@ dependencies = [
     "ipython",
     "typeguard"
 ]
+
+# Allow version inferance
+[tool.setuptools_scm]
