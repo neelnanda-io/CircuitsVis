@@ -1,5 +1,8 @@
 {
   "rewrap.autoWrap.enabled": true,
+  "editor.rulers": [
+    120
+  ],
   "eslint.packageManager": "yarn",
   "eslint.workingDirectories": [
     {
