@@ -4,8 +4,6 @@ import tinycolor from "tinycolor2";
 import { AttentionImage } from "./components/AttentionImage";
 import { Tokens, TokensView } from "./components/AttentionTokens";
 import { useHoverLock } from "./components/useHoverLock";
-import PropTypes from "prop-types";
-
 
 /**
  * Color the attention values by heads
@@ -30,13 +28,9 @@ import PropTypes from "prop-types";
  */
 export function colorAttentionTensors(attentionInput: number[][][]): Tensor4D {
   // Create a TensorFlow tensor from the attention data
-  const attentionTensor = tensor<Rank.R3>(attentionInput, undefined, "float32"); // [dest_tokens x source_tokens x heads]
+  const attentionTensor = tensor<Rank.R3>(attentionInput); // [heads x dest_tokens x source_tokens]
 
-  // Rearrange to [heads x dest_tokens x source_tokens]
-  const attention = einsum(
-    "dsh -> hds",
-    attentionTensor
-  ).arraySync() as number[][][];
+  const attention = attentionTensor.arraySync() as number[][][];
 
   // Set the colors
   const colored = attention.map((head, headNumber) =>
@@ -66,7 +60,14 @@ export default function AttentionPatterns({
   tokens,
   attention
 }: {
-  /** Array of tokens e.g. ["Hello", "my", "name", "is"...] (JSON stringified) */
+  /**
+   * Array of tokens
+   *
+   * @example
+   * ```typescript
+   * ["Hello", "my", "name", "is"...]
+   * ```
+   */
   tokens: string[];
   /** Attention input as [dest_tokens x source_tokens x heads] (JSON stringified) */
   attention: number[][][];
@@ -183,9 +184,4 @@ export default function AttentionPatterns({
       </div>
     </div>
   );
-}
-
-AttentionPatterns.propTypes = {
-  tokens: PropTypes.arrayOf(PropTypes.string).isRequired,
-  attention: PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.arrayOf(PropTypes.number))).isRequired
 }

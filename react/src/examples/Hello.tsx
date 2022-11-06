@@ -12,7 +12,3 @@ export default function Hello({
 }) {
   return <p>Hello, {name}!</p>;
 }
-
-Hello.propTypes = {
-  name: PropTypes.string.isRequired
-};

@@ -3,7 +3,11 @@ import { ComponentStory, ComponentMeta } from "@storybook/react";
 import Hello from "./Hello";
 
 export default {
+  title: "Hello",
   component: Hello
 } as ComponentMeta<typeof Hello>;
 
-export const Bob: ComponentStory<typeof Hello> = () => <Hello name="Bob" />;
+const Template: ComponentStory<typeof Hello> = (args) => <Hello {...args} />;
+
+export const Bob = Template.bind({});
+Bob.args = { name: "Bob" };

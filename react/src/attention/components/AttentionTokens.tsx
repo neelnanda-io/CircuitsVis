@@ -114,7 +114,7 @@ export function Token({
         color: textColor,
         display: "inline-block",
         marginBottom: 3,
-        padding: 3,
+        padding: "3px 0px",
         // Focussed box shadow
         boxShadow: isFocused ? "0px 0px 3px 3px rgba(0,0,200,0.4)" : null
       }}
