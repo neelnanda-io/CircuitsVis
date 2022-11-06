@@ -4,8 +4,9 @@
   "description": "Mechanistic Interpretability Visualizations",
   "main": "dist/main.js",
   "module": "dist/module.js",
+  "browser": "dist/browser.js",
   "types": "dist/types.d.ts",
-  "source": "src/index.ts",
+  "source": "src/web-components.ts",
   "repository": "https://github.com/alan-cooney/CircuitsVis",
   "author": "Alan Cooney",
   "license": "MIT",
@@ -13,7 +14,7 @@
     "test": "jest",
     "lint": "eslint",
     "watch": "parcel watch",
-    "build": "parcel build",
+    "build": "esbuild ./src/web-components.ts --bundle --sourcemap --outfile=./dist/web-components.js",
     "typeCheck": "tsc --noEmit"
   },
   "dependencies": {
@@ -22,6 +23,8 @@
     "@tensorflow/tfjs-node": "^4.0.0",
     "acorn": "^8.8.1",
     "acorn-jsx": "^5.3.2",
+    "esbuild": "^0.15.13",
+    "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-to-webcomponent": "^2.0.0-alpha.0",
