@@ -72,6 +72,11 @@ export default function AttentionPatterns({
   /** Attention input as [dest_tokens x source_tokens x heads] (JSON stringified) */
   attention: number[][][];
 }) {
+  // State for the token view type
+  const [tokensView, setTokensView] = useState<TokensView>(
+    TokensView.DESTINATION_TO_SOURCE
+  );
+
   // Attention head focussed state
   const {
     focused: focusedHead,
@@ -87,11 +92,6 @@ export default function AttentionPatterns({
     onMouseEnter: onMouseEnterToken,
     onMouseLeave: onMouseLeaveToken
   } = useHoverLock();
-
-  // State for the token view type
-  const [tokensView, setTokensView] = useState<TokensView>(
-    TokensView.DESTINATION_TO_SOURCE
-  );
 
   // Color the attention values (by head)
   const coloredAttention = useMemo(
@@ -111,7 +111,9 @@ export default function AttentionPatterns({
 
   // Get the focused head based on the state (selected/hovered)
   const focusedAttention =
-    focusedHead !== null ? heads[focusedHead] : maxAttentionAcrossHeads;
+    typeof focusedHead === "number"
+      ? maxAttentionAcrossHeads
+      : heads[focusedHead];
 
   return (
     <div>

@@ -1,26 +1,34 @@
 {
-    "compilerOptions": {
-        "jsx": "react-jsx",
-        "types": [
-            "jest",
-            "node",
-            "@testing-library/jest-dom"
-        ],
-        "lib": [
-            "dom",
-            "dom.iterable"
-        ],
-        "skipLibCheck": true,
-        "esModuleInterop": true
-    },
-    "exclude": [
-        "node_modules",
+  "compilerOptions": {
+    "sourceMap": true,
+    "module": "es2015",
+    "target": "es2018",
+    "moduleResolution": "node",
+    "outDir": "./dist",
+    "jsx": "react",
+    "skipLibCheck": true,
+    "declaration": true,
+    "declarationMap": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
     ],
-    "include": [
-        "**/*.ts",
-        "**/*.tsx",
-        "**/*.js",
-        ".eslintrc.js",
-        "src/examples/Hello.stories.tsc"
-    ]
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true
+  },
+  "include": [
+    "src"
+  ],
+  "exclude": [
+    "node_modules",
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx",
+    "src/**/*.stories.tsx",
+  ],
 }

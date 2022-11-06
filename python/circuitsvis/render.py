@@ -57,8 +57,10 @@ def render(react_element_name: str, **kwargs) -> HTML:
         str: HTML that imports the script and creates the custom element
     """
     # Read the bundled JavaScript file
+    filename = "index.umd.js"
     bundled_js_path = Path(__file__).parent.parent.parent / \
-        "react" / "dist" / "index.js"
+        "react" / "dist" / filename
+    print(filename)
     with open(bundled_js_path, encoding="utf8") as file:
         bundled_js = file.read()
 
@@ -77,12 +79,14 @@ def render(react_element_name: str, **kwargs) -> HTML:
 
                 // Load bundled components
                 {bundled_js}
+                
+                console.log(circuitsvis);
 
                 // Render the specific component
                 const domContainer = document.querySelector('#{uuid}');
                 const root = ReactDOM.createRoot(domContainer);
                 const e = React.createElement;
-                root.render(e({react_element_name}, {props}));</script>
+                root.render(e(circuitsvis.default.{react_element_name}, {props}));</script>
                 """)
 
 

@@ -1,6 +1,6 @@
-import AttentionPatterns from "./attention/AttentionPatterns";
+// import AttentionPatterns from "./attention/AttentionPatterns";
 import Hello from "./examples/Hello";
 
-const reactComponents = { AttentionPatterns, Hello };
+const reactComponents = { Hello };
 
 export default reactComponents;

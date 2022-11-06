@@ -1,4 +1,5 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
+import React from "react";
 
 import AttentionPatterns from "./AttentionPatterns";
 import { mockAttention, mockTokens } from "./mocks/attention";
