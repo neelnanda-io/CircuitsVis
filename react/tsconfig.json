@@ -20,6 +20,7 @@
         "**/*.ts",
         "**/*.tsx",
         "**/*.js",
-        ".eslintrc.js"
+        ".eslintrc.js",
+        "src/examples/Hello.stories.tsc"
     ]
 }
