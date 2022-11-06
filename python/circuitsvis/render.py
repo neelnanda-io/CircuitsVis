@@ -2,6 +2,7 @@
 import random
 import subprocess
 from pathlib import Path
+import json
 
 from filehash.filehash import FileHash
 from IPython.display import Javascript, display, HTML
@@ -43,13 +44,13 @@ def bundle_source() -> None:
         "build"
     ],
         cwd=react_dir.absolute(),
-        # capture_output=True,
-        # text=True,
-        check=True  # Raise an exception if bundling fails
+        capture_output=True,
+        text=True,
+        check=True
     )
 
 
-def create_script() -> HTML:
+def render(react_element_name: str, **kwargs) -> HTML:
     """Create a script that will create the custom element
 
     Returns:
@@ -57,47 +58,66 @@ def create_script() -> HTML:
     """
     # Read the bundled JavaScript file
     bundled_js_path = Path(__file__).parent.parent.parent / \
-        "react" / "dist" / "web-components.js"
-    print("web")
+        "react" / "dist" / "index.js"
     with open(bundled_js_path, encoding="utf8") as file:
         bundled_js = file.read()
 
-    print("is_html")
-    return HTML(f"<script module>{bundled_js}</script>")
+    # Create a random ID
+    uuid = "circuitsvis-" + str(random.randint(0, 999999))
+
+    # Stringify keyword args
+    props = json.dumps(kwargs)
+
+    return HTML(f"""
+                <div id="{uuid}"/>
+                <script crossorigin type="module">
+                // Import React
+                import "https://unpkg.com/react@18/umd/react.production.min.js";
+                import "https://unpkg.com/react-dom@18/umd/react-dom.production.min.js";
+
+                // Load bundled components
+                {bundled_js}
+
+                // Render the specific component
+                const domContainer = document.querySelector('#{uuid}');
+                const root = ReactDOM.createRoot(domContainer);
+                const e = React.createElement;
+                root.render(e({react_element_name}, {props}));</script>
+                """)
 
 
-def create_custom_element(custom_element_name: str, **kwargs: str) -> str:
-    """Create the custom element
+# def create_custom_element(custom_element_name: str, **kwargs: str) -> str:
+#     """Create the custom element
 
-    Args:
-        custom_element_name (str): Name for the custom element (must be globally
-        unique for the user so keep long and descriptive).
-        **kwargs (str): Parameters to be provided to the custom element.
+#     Args:
+#         custom_element_name (str): Name for the custom element (must be globally
+#         unique for the user so keep long and descriptive).
+#         **kwargs (str): Parameters to be provided to the custom element.
 
-    Returns:
-        str: Custom element with parameters
-    """
-    # Format the custom element parameters
-    params_list = [f"{name}='{value}'" for name, value in kwargs.items()]
-    params = " ".join(params_list)
+#     Returns:
+#         str: Custom element with parameters
+#     """
+#     # Format the custom element parameters
+#     params_list = [f"{name}='{value}'" for name, value in kwargs.items()]
+#     params = " ".join(params_list)
 
-    # Return the custom element
-    return f"<{custom_element_name} {params}/>"
+#     # Return the custom element
+#     return f"<{custom_element_name} {params}/>"
 
 
-def render(custom_element_name: str, **kwargs) -> HTML:
-    """Render a visualization as a HTML custom element
+# def render(custom_element_name: str, **kwargs) -> HTML:
+#     """Render a visualization as a HTML custom element
 
-    https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements
+#     https://developer.mozilla.org/en-US/docs/Web/Web_Components/Using_custom_elements
 
-    Returns:
-        HTML: HTML Visualization
-    """
-    # Bundle the source code
-    install_if_necessary()
-    bundle_source()
-    js = create_script()
-    display(js)
+#     Returns:
+#         HTML: HTML Visualization
+#     """
+#     # Bundle the source code
+#     install_if_necessary()
+#     bundle_source()
+#     js = render()
+#     display(js)
 
-    custom_element = create_custom_element(custom_element_name, **kwargs)
-    return HTML(custom_element)
+#     custom_element = create_custom_element(custom_element_name, **kwargs)
+#     return HTML(custom_element)

@@ -1,4 +1,3 @@
-import React from "react";
 import { einsum, Rank, Tensor, Tensor3D, Tensor4D } from "@tensorflow/tfjs";
 import tinycolor from "tinycolor2";
 

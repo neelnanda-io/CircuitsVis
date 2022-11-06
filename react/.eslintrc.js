@@ -9,29 +9,30 @@ module.exports = {
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:testing-library/react",
-    "plugin:jest-dom/recommended",
+    "plugin:jest-dom/recommended"
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
     project: ["./tsconfig.json"],
     ecmaVersion: 2018,
     ecmaFeatures: { jsx: true },
-    sourceType: "module",
+    sourceType: "module"
   },
   plugins: [
     "@typescript-eslint",
     "jest-dom",
     "jsx-a11y",
     "react",
-    "testing-library",
+    "testing-library"
   ],
   rules: {
     "import/prefer-default-export": "off",
     "import/extensions": "off", // Conflicts with lit
     "react/jsx-filename-extension": "off",
     "react/require-default-props": "off", // Not needed as we have TypeScript for type checking
+    "react/react-in-jsx-scope": "off" // Esbuild injects this for us
   },
   settings: {
-    react: { version: "detect" },
-  },
+    react: { version: "detect" }
+  }
 };

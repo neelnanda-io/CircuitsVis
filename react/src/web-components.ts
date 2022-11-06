@@ -6,8 +6,8 @@ import reactComponents from "./index";
 /**
  * Export all components as Web Components
  *
- * This script can then be imported from any website, and it will allow use of
- * the visualizations with custom element html tags.
+ * The bundled version of this script can be imported from any website, and it
+ * will allow use of the visualizations with custom element html tags.
  *
  * https://developer.mozilla.org/en-US/docs/Web/Web_Components
  *

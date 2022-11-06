@@ -13,8 +13,8 @@
   "scripts": {
     "test": "jest",
     "lint": "eslint",
-    "watch": "parcel watch",
-    "build": "esbuild ./src/web-components.ts --bundle --sourcemap --outfile=./dist/web-components.js",
+    "build": "esbuild ./src/index.ts --bundle --sourcemap --outfile=./dist/index.js --format=esm --jsx=automatic",
+    "buildWebComponents": "esbuild ./src/web-components.ts --bundle --sourcemap --outfile=./dist/web-components.js --jsx=automatic",
     "typeCheck": "tsc --noEmit"
   },
   "dependencies": {
