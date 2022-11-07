@@ -69,37 +69,18 @@ def render(react_element_name: str, **kwargs) -> HTML:
     props = json.dumps(kwargs)
 
     return HTML(f"""
-                <div id="{uuid}"/>
-                <script crossorigin type="module">
-                // Load bundled components
-                {bundled_js}
-                
-                CircuitsVis.render(
-                  "{uuid}",
-                  CircuitsVis.{react_element_name},
-                  {props}
-                )
-                </script>
-                """)
-
-
-# def create_custom_element(custom_element_name: str, **kwargs: str) -> str:
-#     """Create the custom element
-
-#     Args:
-#         custom_element_name (str): Name for the custom element (must be globally
-#         unique for the user so keep long and descriptive).
-#         **kwargs (str): Parameters to be provided to the custom element.
-
-#     Returns:
-#         str: Custom element with parameters
-#     """
-#     # Format the custom element parameters
-#     params_list = [f"{name}='{value}'" for name, value in kwargs.items()]
-#     params = " ".join(params_list)
-
-#     # Return the custom element
-#     return f"<{custom_element_name} {params}/>"
+      <div id="{uuid}"/>
+      <script crossorigin type="module">
+      // Load bundled components
+      {bundled_js}
+      
+      CircuitsVis.render(
+        "{uuid}",
+        CircuitsVis.{react_element_name},
+        {props}
+      )
+      </script>
+      """)
 
 
 # def render(custom_element_name: str, **kwargs) -> HTML:
