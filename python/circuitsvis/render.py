@@ -57,7 +57,7 @@ def render(react_element_name: str, **kwargs) -> HTML:
         str: HTML that imports the script and creates the custom element
     """
     # Read the bundled JavaScript file
-    filename = "index.umd.js"
+    filename = "cdn.umd.js"
     bundled_js_path = Path(__file__).parent.parent.parent / \
         "react" / "dist" / filename
     print(filename)
