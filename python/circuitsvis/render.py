@@ -57,10 +57,8 @@ def render(react_element_name: str, **kwargs) -> HTML:
         str: HTML that imports the script and creates the custom element
     """
     # Read the bundled JavaScript file
-    filename = "cdn.umd.js"
     bundled_js_path = Path(__file__).parent.parent.parent / \
-        "react" / "dist" / filename
-    print(filename)
+        "react" / "dist" / "cdn" / "iife.js"
     with open(bundled_js_path, encoding="utf8") as file:
         bundled_js = file.read()
 
@@ -73,20 +71,15 @@ def render(react_element_name: str, **kwargs) -> HTML:
     return HTML(f"""
                 <div id="{uuid}"/>
                 <script crossorigin type="module">
-                // Import React
-                import "https://unpkg.com/react@18/umd/react.production.min.js";
-                import "https://unpkg.com/react-dom@18/umd/react-dom.production.min.js";
-
                 // Load bundled components
                 {bundled_js}
                 
-                console.log(CircuitsVis);
-
-                // Render the specific component
-                const domContainer = document.querySelector('#{uuid}');
-                const root = ReactDOM.createRoot(domContainer);
-                const e = React.createElement;
-                root.render(e(CircuitsVis.{react_element_name}, {props}));</script>
+                CircuitsVis.render(
+                  "{uuid}",
+                  CircuitsVis.{react_element_name},
+                  {props}
+                )
+                </script>
                 """)
 
 

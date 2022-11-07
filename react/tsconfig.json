@@ -4,12 +4,11 @@
     "module": "es2015",
     "target": "es2018",
     "moduleResolution": "node",
-    "outDir": "./dist",
+    "outDir": "./dist/module",
     "jsx": "react",
     "skipLibCheck": true,
     "declaration": true,
     "declarationMap": true,
-    "noEmit": true,
     "esModuleInterop": true,
     "lib": [
       "dom",
@@ -24,7 +23,7 @@
   },
   "include": [
     "src",
-    "scripts"
+    "esbuild.js"
   ],
   "exclude": [
     "node_modules",
