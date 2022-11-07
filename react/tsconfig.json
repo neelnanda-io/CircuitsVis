@@ -23,12 +23,10 @@
     "noFallthroughCasesInSwitch": true
   },
   "include": [
-    "src"
+    "src",
+    "scripts"
   ],
   "exclude": [
     "node_modules",
-    "src/**/*.test.ts",
-    "src/**/*.test.tsx",
-    "src/**/*.stories.tsx",
   ],
 }

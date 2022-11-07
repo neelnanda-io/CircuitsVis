@@ -3,7 +3,7 @@ import React, { useState } from "react";
 /**
  * Hello Example
  */
-export default function Hello({
+export function Hello({
   name
 }: {
   /** Name to say "Hello" to */

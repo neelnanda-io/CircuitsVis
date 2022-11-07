@@ -1,7 +1,7 @@
 import { setBackend, ones, Rank } from "@tensorflow/tfjs";
 import { render, screen } from "@testing-library/react";
 import React from "react";
-import AttentionPatterns, { colorAttentionTensors } from "../AttentionPatterns";
+import { AttentionPatterns, colorAttentionTensors } from "../AttentionPatterns";
 
 beforeAll(() => {
   // Use the node backend whilst testing

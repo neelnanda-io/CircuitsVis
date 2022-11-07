@@ -80,13 +80,13 @@ def render(react_element_name: str, **kwargs) -> HTML:
                 // Load bundled components
                 {bundled_js}
                 
-                console.log(circuitsvis);
+                console.log(CircuitsVis);
 
                 // Render the specific component
                 const domContainer = document.querySelector('#{uuid}');
                 const root = ReactDOM.createRoot(domContainer);
                 const e = React.createElement;
-                root.render(e(circuitsvis.default.{react_element_name}, {props}));</script>
+                root.render(e(CircuitsVis.{react_element_name}, {props}));</script>
                 """)
 
 

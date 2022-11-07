@@ -1,7 +1,7 @@
 import { ComponentStory, ComponentMeta } from "@storybook/react";
 import React from "react";
 
-import Hello from "./Hello";
+import { Hello } from "./Hello";
 
 export default {
   title: "Hello",

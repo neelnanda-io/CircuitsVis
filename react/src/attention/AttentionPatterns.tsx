@@ -56,7 +56,7 @@ export function colorAttentionTensors(attentionInput: number[][][]): Tensor4D {
 /**
  * Attention Patterns
  */
-export default function AttentionPatterns({
+export function AttentionPatterns({
   tokens,
   attention
 }: {
@@ -111,9 +111,7 @@ export default function AttentionPatterns({
 
   // Get the focused head based on the state (selected/hovered)
   const focusedAttention =
-    typeof focusedHead === "number"
-      ? maxAttentionAcrossHeads
-      : heads[focusedHead];
+    focusedHead === null ? maxAttentionAcrossHeads : heads[focusedHead];
 
   return (
     <div>

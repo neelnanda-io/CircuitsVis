@@ -11,12 +11,12 @@ export function useHoverLock(): {
   onMouseEnter: (element: number) => void;
   onMouseLeave: () => void;
 } {
-  const [hoveredElement, setHoveredElement] = useState<number | undefined>();
-  const [lockedElement, setLockedElement] = useState<number | undefined>();
+  const [hoveredElement, setHoveredElement] = useState<number | null>(null);
+  const [lockedElement, setLockedElement] = useState<number | null>(null);
 
   function onClick(element: number): void {
     if (lockedElement === element) {
-      setLockedElement(undefined);
+      setLockedElement(null);
     } else {
       setLockedElement(element);
     }
@@ -27,7 +27,7 @@ export function useHoverLock(): {
   }
 
   function onMouseLeave(): void {
-    setHoveredElement(undefined);
+    setHoveredElement(null);
   }
 
   const focused = lockedElement ?? hoveredElement;
